@@ -74,6 +74,7 @@ namespace Device_test
             // 
             // btn_exit
             // 
+            this.btn_exit.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_exit.Location = new System.Drawing.Point(38, 838);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_exit.Name = "btn_exit";

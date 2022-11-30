@@ -25,11 +25,12 @@ void setup() {
 	// 8MHz 38400
 	UBRRL = 12;
 
-	DDRB = (1 << PB1) | (1 << PB0); // PB1: 전원제어2 , PB0: 전원제어1
-	DDRC = (1 << PC3) | (1 << PC2) | (0 << PC1) | (0 << PC0); // PC3: 데드볼트2, PC2: 데드볼트1, PC1: 자석2 , PC0: 자석1
+	DDRB = (0 << PB2) | (1 << PB1) | (1 << PB0); // PB2 : 자석2, PB1: 전원제어2 , PB0: 전원제어1
+	DDRC = (1 << PC3) | (1 << PC2) | (0 << PC0); // PC3: 데드볼트2, PC2: 데드볼트1, PC0: 자석1
 	DDRD = (1 << PD1) | (0 << PD0); //UART
 	
-	PORTC = (1 << PC1) | (1 << PC0); // 자석 풀업 저항
+	PORTC = (1 << PC0); // 자석1 풀업 저항
+	PORTB = (1 << PB2); // 자석2 풀업 저항
 
 	UCSRB = (1 << RXCIE) | (1 << RXEN) | (1 << TXEN);
 
@@ -81,7 +82,7 @@ ISR(SIG_UART_RECV)
 	{
 		if(Test == 1)
 		{
-			sbi(PORTC, 3);
+			cbi(PORTC, 3);
 		}
 		else
 		{
@@ -164,7 +165,7 @@ void loop(){
 		//1번문 제어
 		if(Relay[0] == 0) //자석 가까운데 문 열려있음
 		{
-			if(!(PINC&0x04))
+			if(!(PINC&0x01))
 			{
 				printf("R1_0");
 			
@@ -175,7 +176,7 @@ void loop(){
 		else if(Relay[0] == 1) //문닫혀있는데 자석 멀음
 		{
 			
-			if(PINC&0x04)
+			if(PINC&0x01)
 			{
 				_delay_ms(5000);
 				tillend(3, 2);
@@ -185,7 +186,7 @@ void loop(){
 		//2번문 제어
 		if(Relay[1] == 0) //자석 가까운데 문 열려있음
 		{
-			if(!(PINC&0x08))
+			if(!(PINB&0x04))
 			{
 				printf("R2_0");
 			
@@ -196,35 +197,35 @@ void loop(){
 		else if(Relay[1] == 1) //문닫혀있는데 자석 멀음
 		{
 			
-			if(PINC&0x08)
+			if(PINB&0x04)
 			{
 				_delay_ms(5000);
 				tillend(3, 3);
 			}
 		}
 	}
-	else if(Test == 1)
+	else if(Test == 1) // 디바이스 테스트 (자석)
 	{
-		//자석 1
-		if(!(PINC&0x01)) 
+		
+		if(((PINC&0x01) != 0x01) && ((PINB&0x04) != 0x04))
 		{
-			printf("c");
+			printf("c,c");
+		
 		}
-
-		if(PINC&0x01)
+		else if(((PINC&0x01) != 0x01) &&((PINB&0x04) == 0x04))
 		{
-			printf("o");
+			printf("c,o");
+		
 		}
-
-		//자석 2
-		if(!(PINC&0x02)) 
+		else if(((PINC&0x01) == 0x01) && ((PINB&0x04) != 0x04))
 		{
-			printf(",c");
+			printf("o,c");
+		
 		}
-
-		if(PINC&0x02)
+		else if(((PINC&0x01) == 0x01) && ((PINB&0x04) == 0x04))
 		{
-			printf(",o");
+			printf("o,o");
+		
 		}
 
 	}

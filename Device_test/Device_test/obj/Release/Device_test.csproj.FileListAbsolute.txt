@@ -10,3 +10,15 @@ C:\Users\kwon\Documents\카카오톡 받은 파일\Device_test\Device_test\obj\R
 C:\Users\kwon\Documents\카카오톡 받은 파일\Device_test\Device_test\obj\Release\Device_test.csproj.CoreCompileInputs.cache
 C:\Users\kwon\Documents\카카오톡 받은 파일\Device_test\Device_test\obj\Release\Device_test.exe
 C:\Users\kwon\Documents\카카오톡 받은 파일\Device_test\Device_test\obj\Release\Device_test.pdb
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\bin\Release\Device_test.exe.config
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\bin\Release\Device_test.exe
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\bin\Release\Device_test.pdb
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.csproj.AssemblyReference.cache
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.csproj.SuggestedBindingRedirects.cache
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.Active.resources
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.Home.resources
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.Properties.Resources.resources
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.csproj.GenerateResource.cache
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.csproj.CoreCompileInputs.cache
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.exe
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Release\Device_test.pdb

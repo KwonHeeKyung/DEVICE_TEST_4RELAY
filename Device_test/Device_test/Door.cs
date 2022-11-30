@@ -100,6 +100,7 @@ namespace Device_test
 
                 if (bytesBuffer.Length > 0)
                 {
+                    //Console.WriteLine(strBuffer);
                     DataRecvHandler(bytesBuffer);
 
                 }
