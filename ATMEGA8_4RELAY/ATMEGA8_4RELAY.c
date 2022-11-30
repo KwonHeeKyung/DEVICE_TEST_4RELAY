@@ -23,7 +23,8 @@ void setup() {
 
 	//UART
 	// 8MHz 38400
-	UBRRL = 12;
+	//UBRRL = 12;
+	UBRRL = 51; // 9600 bps
 
 	DDRB = (0 << PB2) | (1 << PB1) | (1 << PB0); // PB2 : 자석2, PB1: 전원제어2 , PB0: 전원제어1
 	DDRC = (1 << PC3) | (1 << PC2) | (0 << PC0); // PC3: 데드볼트2, PC2: 데드볼트1, PC0: 자석1
@@ -126,12 +127,12 @@ ISR(SIG_UART_RECV)
 void tillend(int x, int n)
 {
 	if(n==2){
-		printf("R1_2");
+		printf("12");
 		Relay[0] = 2;
 	}
 	else if(n==3)
 	{
-		printf("R2_2");
+		printf("22");
 		Relay[1] = 2;
 	}
 	/*
@@ -167,7 +168,7 @@ void loop(){
 		{
 			if(!(PINC&0x01))
 			{
-				printf("R1_0");
+				printf("10");
 			
 				sbi(PORTC,2);
 				Relay[0] = 1;
@@ -188,7 +189,7 @@ void loop(){
 		{
 			if(!(PINB&0x04))
 			{
-				printf("R2_0");
+				printf("20");
 			
 				sbi(PORTC,3);
 				Relay[1] = 1;
