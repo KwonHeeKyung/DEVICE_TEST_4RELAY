@@ -35,7 +35,7 @@ namespace Device_test
             try
             {
                 ser.PortName = _door.ToString();
-                ser.BaudRate = 38400;
+                ser.BaudRate = 9600;
                 ser.DataBits = 8;
                 ser.StopBits = StopBits.One;
                 ser.Parity = Parity.None;

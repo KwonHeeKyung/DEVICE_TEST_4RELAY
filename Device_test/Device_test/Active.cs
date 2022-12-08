@@ -73,20 +73,20 @@ namespace Device_test
             string status = Encoding.Default.GetString(data);
             string[] arr = status.Split(',');
 
-            if (arr[0] == "c")
-            {
-                DoorVisible(door1_close, true);
-                DoorVisible(door1_open, false);
-            }
-            else if (arr[0] == "o")
-            {
-
-                DoorVisible(door1_close, false);
-                DoorVisible(door1_open, true);
-            }
-
             if (arr.Length > 1)
             {
+                if (arr[0] == "c")
+                {
+                    DoorVisible(door1_close, true);
+                    DoorVisible(door1_open, false);
+                }
+                else if (arr[0] == "o")
+                {
+
+                    DoorVisible(door1_close, false);
+                    DoorVisible(door1_open, true);
+                }
+
                 if (arr[1] == "c")
                 {
                     DoorVisible(door2_close, true);
@@ -98,7 +98,7 @@ namespace Device_test
                     DoorVisible(door2_open, true);
                 }
             }
-
+            
         }
 
         private void DoorVisible(Button btn, bool visible)
