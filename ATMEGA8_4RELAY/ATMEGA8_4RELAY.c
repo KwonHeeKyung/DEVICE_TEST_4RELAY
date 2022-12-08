@@ -15,7 +15,7 @@ void UART2PC(void);
 static int USART_putchar(char c, FILE *stream);
 static FILE device = FDEV_SETUP_STREAM(USART_putchar, NULL, _FDEV_SETUP_WRITE);
 
-volatile unsigned char RX_BUF[1], Relay[2], Test;
+volatile unsigned char RX_BUF[1], Relay[2], Test, Case;
 
 void setup() {
 	
@@ -71,7 +71,9 @@ ISR(SIG_UART_RECV)
 		else
 		{
 			cbi(PORTC,2);
+			cbi(PORTC,3);
 			Relay[0] = 0;
+			Relay[1] = 0;
 			_delay_ms(5000);
 		}
 	}
@@ -80,17 +82,8 @@ ISR(SIG_UART_RECV)
 		sbi(PORTC,2);
 	}
 	else if(RX_BUF[0] == '4') // 2번문 열기
-	{
-		if(Test == 1)
-		{
-			cbi(PORTC, 3);
-		}
-		else
-		{
-			cbi(PORTC,3);
-			Relay[1] = 0;
-			_delay_ms(5000);
-		}
+	{	
+		cbi(PORTC, 3);	
 	}
 	else if(RX_BUF[0] == '5') // 2번문 닫기
 	{
@@ -124,38 +117,12 @@ ISR(SIG_UART_RECV)
 	sei();
 }
 
-void tillend(int x, int n)
+void tillend()
 {
-	if(n==2){
-		printf("12");
-		Relay[0] = 2;
-	}
-	else if(n==3)
-	{
-		printf("22");
-		Relay[1] = 2;
-	}
-	/*
-	int a = 0;
-	do{
-		cbi(PORTB,n);
-		_delay_ms(1500);
-		sbi(PORTB,n);
-		_delay_ms(1500);
-		a++;
-	}while(a <= x);
-	
-	//exit(0);
-	if(n==2){
-		printf("R1_2");
-		Relay[0] = 2;
-	}
-	else if(n==3)
-	{
-		printf("R2_2");
-		Relay[1] = 2;
-	}
-	*/
+
+	printf("2");
+	Relay[0] = 2;
+	Relay[1] = 2;
 
 }
 
@@ -163,49 +130,37 @@ void loop(){
 
 	if(Test == 0)
 	{
-		//1번문 제어
-		if(Relay[0] == 0) //자석 가까운데 문 열려있음
+		if(Relay[0] == 0 && Relay[1] == 0)
 		{
-			if(!(PINC&0x01))
+			if( !(PINC&0x01) && !(PINB&0x04) )
 			{
-				printf("10");
-			
+				printf("0");
 				sbi(PORTC,2);
-				Relay[0] = 1;
-			}
-		}
-		else if(Relay[0] == 1) //문닫혀있는데 자석 멀음
-		{
-			
-			if(PINC&0x01)
-			{
-				_delay_ms(5000);
-				tillend(3, 2);
-			}
-		}
-
-		//2번문 제어
-		if(Relay[1] == 0) //자석 가까운데 문 열려있음
-		{
-			if(!(PINB&0x04))
-			{
-				printf("20");
-			
 				sbi(PORTC,3);
+				Relay[0] = 1;
 				Relay[1] = 1;
 			}
 		}
-		else if(Relay[1] == 1) //문닫혀있는데 자석 멀음
+
+		if(Relay[0] == 1)
 		{
-			
+			if(PINC&0x01)
+			{
+				_delay_ms(5000);
+				tillend();
+			}
+		}
+		if(Relay[1] == 1)
+		{
 			if(PINB&0x04)
 			{
 				_delay_ms(5000);
-				tillend(3, 3);
+				tillend();
 			}
 		}
+		
 	}
-	else if(Test == 1) // 디바이스 테스트 (자석)
+	else if(Test == 1) // 테스트모드
 	{
 		
 		if(((PINC&0x01) != 0x01) && ((PINB&0x04) != 0x04))
@@ -261,3 +216,4 @@ static int USART_putchar(char c, FILE *stream)
 	return 0;
 
 }
+
