@@ -121,12 +121,12 @@ namespace Device_test
 
         private void btn_relay2_Click(object sender, EventArgs e)
         {
-            door.Data_send("3");
+            door.Data_send("4");
         }
 
         private void btn_relay3_Click(object sender, EventArgs e)
         {
-            door.Data_send("4");
+            door.Data_send("3");
         }
 
         private void btn_relay4_Click(object sender, EventArgs e)

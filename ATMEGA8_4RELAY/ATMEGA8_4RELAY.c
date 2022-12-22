@@ -71,19 +71,26 @@ ISR(SIG_UART_RECV)
 		else
 		{
 			cbi(PORTC,2);
-			cbi(PORTC,3);
 			Relay[0] = 0;
+			_delay_ms(5000);
+		}
+	}
+	else if(RX_BUF[0] == '3') // 2번문 열기
+	{
+		if(Test == 1)
+		{
+			cbi(PORTC,3);
+		}
+		else
+		{
+			cbi(PORTC,3);
 			Relay[1] = 0;
 			_delay_ms(5000);
 		}
 	}
-	else if(RX_BUF[0] == '3') // 1번문 닫기
-	{
-		sbi(PORTC,2);
-	}
-	else if(RX_BUF[0] == '4') // 2번문 열기
+	else if(RX_BUF[0] == '4') // 1번문 닫기
 	{	
-		cbi(PORTC, 3);	
+		sbi(PORTC,2);
 	}
 	else if(RX_BUF[0] == '5') // 2번문 닫기
 	{
@@ -130,14 +137,22 @@ void loop(){
 
 	if(Test == 0)
 	{
-		if(Relay[0] == 0 && Relay[1] == 0)
+		if(Relay[0] == 0)
 		{
-			if( !(PINC&0x01) && !(PINB&0x04) )
+			if(!(PINC&0x01))
 			{
 				printf("0");
 				sbi(PORTC,2);
-				sbi(PORTC,3);
 				Relay[0] = 1;
+			}
+		}
+
+		if(Relay[1] == 0)
+		{
+			if(!(PINB&0x04))
+			{
+				printf("0");
+				sbi(PORTC,3);
 				Relay[1] = 1;
 			}
 		}
