@@ -15,7 +15,7 @@ void UART2PC(void);
 static int USART_putchar(char c, FILE *stream);
 static FILE device = FDEV_SETUP_STREAM(USART_putchar, NULL, _FDEV_SETUP_WRITE);
 
-volatile unsigned char RX_BUF[1], Relay[2], Test, Case;
+volatile unsigned char RX_BUF[1], Relay[2], Test, p;
 
 void setup() {
 	
@@ -39,6 +39,7 @@ void setup() {
 	Relay[1] = 1;
 
 	Test = 0;
+	p=0;
 
 	//전원 High
 	sbi(PORTB, 0);
@@ -47,6 +48,9 @@ void setup() {
 	//데드볼트 High
 	sbi(PORTC, 2);
 	sbi(PORTC, 3);
+
+	//상태체크 LED
+	sbi(PORTC, 5);
 
 	stdout = &device;
 
@@ -124,12 +128,27 @@ ISR(SIG_UART_RECV)
 	sei();
 }
 
-void tillend()
+void tillend(int x, char d)
 {
-
-	printf("2");
-	Relay[0] = 2;
-	Relay[1] = 2;
+	int a = 0;
+	do{
+		if(d == 'l')
+		{
+			cbi(PORTC,2);
+			_delay_ms(1500);
+			sbi(PORTC,2);
+			_delay_ms(1500);
+		}
+		else if(d == 'r')
+		{
+			cbi(PORTC,3);
+			_delay_ms(1500);
+			sbi(PORTC,3);
+			_delay_ms(1500);
+		}
+		a++;
+		
+	}while(a <= x);
 
 }
 
@@ -161,17 +180,33 @@ void loop(){
 		{
 			if(PINC&0x01)
 			{
-				_delay_ms(5000);
-				tillend();
+				tillend(3,'l');
+				p=2;
 			}
 		}
 		if(Relay[1] == 1)
 		{
 			if(PINB&0x04)
 			{
-				_delay_ms(5000);
-				tillend();
+				tillend(3,'r');
+				p=2;
 			}
+		}
+
+		if((p==2) && (PINC&0x01) && (Relay[0] == 1))
+		{
+			printf("2");
+		}
+
+		else if((p==2) && (PINB&0x04) && (Relay[1] == 1))
+		{
+			printf("2");
+		}
+
+		if( ((p==2) && (!(PINC&0x01)) && (Relay[0] == 1)) && ((p==2) && (!(PINB&0x04)) && (Relay[1] == 1)) )
+		{
+			printf("r");
+			p=0;
 		}
 		
 	}
@@ -204,7 +239,11 @@ void loop(){
 
 int main(void)
 {
-	
+	//프로그램 업데이트되면 LED ON, OFF
+	sbi(PORTC, 4);
+	_delay_ms(300);
+	cbi(PORTC, 4);	
+
     setup();
 	
     while (1) 

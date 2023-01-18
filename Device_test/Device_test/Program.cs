@@ -18,7 +18,12 @@ namespace Device_test
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Home());
-            if(Active.START == 1)
+            Application.Run(new Choice());
+            if(OneDoorForm.START == 1)
+            {
+                Application.Run(new OneDoorForm());
+            }
+            else if(Active.START == 1)
             {
                 Application.Run(new Active());
             }

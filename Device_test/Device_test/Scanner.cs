@@ -25,6 +25,7 @@ namespace Device_test
 
         SerialPort ser = new SerialPort();
         StringBuilder _scanner = new StringBuilder();
+        public bool STATUS = false;
         public delegate void DataRecvHandlerFunc(byte[] data);
         public DataRecvHandlerFunc DataRecvHandler;
 
@@ -50,10 +51,12 @@ namespace Device_test
                 ser.DataReceived += Data_recv;
 
                 ser.Open();
+                STATUS = true;
                 return true;
             }
             catch (Exception ex){
                 Console.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
             return false;

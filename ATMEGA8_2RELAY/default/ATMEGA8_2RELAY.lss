@@ -1,0 +1,570 @@
+
+ATMEGA8_2RELAY.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002ba  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000e  00800060  000002ba  0000034e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000a  0080006e  0080006e  0000035c  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  0000035c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000a28  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000060  00000000  00000000  00000aad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 000000c4  00000000  00000000  00000b0d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   000008eb  00000000  00000000  00000bd1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000508  00000000  00000000  000014bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000776  00000000  00000000  000019c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000000b0  00000000  00000000  0000213c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000276  00000000  00000000  000021ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000102  00000000  00000000  00002462  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 000000be  00000000  00000000  00002564  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_ranges 00000020  00000000  00000000  00002622  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	50 c0       	rjmp	.+160    	; 0xb8 <__vector_11>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ea eb       	ldi	r30, 0xBA	; 186
+  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	ae 36       	cpi	r26, 0x6E	; 110
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	ae e6       	ldi	r26, 0x6E	; 110
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a8 37       	cpi	r26, 0x78	; 120
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	e5 d0       	rcall	.+458    	; 0x224 <main>
+  5a:	2d c1       	rjmp	.+602    	; 0x2b6 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <USART_putchar>:
+	return 0;
+}
+
+static int USART_putchar(char c, FILE *stream)
+{
+	if(c == '\n')
+  5e:	8a 30       	cpi	r24, 0x0A	; 10
+  60:	41 f4       	brne	.+16     	; 0x72 <USART_putchar+0x14>
+	{   loop_until_bit_is_set(UCSRA,UDRE);
+  62:	5d 9b       	sbis	0x0b, 5	; 11
+  64:	fe cf       	rjmp	.-4      	; 0x62 <USART_putchar+0x4>
+		UDR = 0x0D;
+  66:	8d e0       	ldi	r24, 0x0D	; 13
+  68:	8c b9       	out	0x0c, r24	; 12
+		loop_until_bit_is_set(UCSRA,UDRE);
+  6a:	5d 9b       	sbis	0x0b, 5	; 11
+  6c:	fe cf       	rjmp	.-4      	; 0x6a <USART_putchar+0xc>
+		UDR = 0x0A;
+  6e:	8a e0       	ldi	r24, 0x0A	; 10
+  70:	02 c0       	rjmp	.+4      	; 0x76 <USART_putchar+0x18>
+	}
+	else
+	{  loop_until_bit_is_set(UCSRA,UDRE);
+  72:	5d 9b       	sbis	0x0b, 5	; 11
+  74:	fe cf       	rjmp	.-4      	; 0x72 <USART_putchar+0x14>
+		UDR = c;
+  76:	8c b9       	out	0x0c, r24	; 12
+	}
+	return 0;
+
+}
+  78:	80 e0       	ldi	r24, 0x00	; 0
+  7a:	90 e0       	ldi	r25, 0x00	; 0
+  7c:	08 95       	ret
+
+0000007e <setup>:
+
+volatile unsigned char RX_BUF[1], Relay, Test, p;
+
+void setup() {
+	
+	cli();
+  7e:	f8 94       	cli
+
+	//UART
+	// 8MHz 38400
+	//UBRRL = 12;
+	UBRRL = 51; // 9600 bps
+  80:	83 e3       	ldi	r24, 0x33	; 51
+  82:	89 b9       	out	0x09, r24	; 9
+
+	DDRB = (1 << PB0); // PB0: 전원제어
+  84:	81 e0       	ldi	r24, 0x01	; 1
+  86:	87 bb       	out	0x17, r24	; 23
+	DDRC = (1 << PC2) | (0 << PC0); // PC2: 데드볼트,  PC0: 자석
+  88:	94 e0       	ldi	r25, 0x04	; 4
+  8a:	94 bb       	out	0x14, r25	; 20
+	DDRD = (1 << PD1) | (0 << PD0); //UART
+  8c:	92 e0       	ldi	r25, 0x02	; 2
+  8e:	91 bb       	out	0x11, r25	; 17
+	
+	PORTC = (1 << PC0); // 자석 풀업 저항
+  90:	85 bb       	out	0x15, r24	; 21
+
+	UCSRB = (1 << RXCIE) | (1 << RXEN) | (1 << TXEN);
+  92:	98 e9       	ldi	r25, 0x98	; 152
+  94:	9a b9       	out	0x0a, r25	; 10
+
+	Relay = 1;
+  96:	80 93 71 00 	sts	0x0071, r24
+	Test = 0;
+  9a:	10 92 6f 00 	sts	0x006F, r1
+	p=0;
+  9e:	10 92 6e 00 	sts	0x006E, r1
+	
+	sbi(PORTB, 0);
+  a2:	c0 9a       	sbi	0x18, 0	; 24
+	sbi(PORTC, 2);
+  a4:	aa 9a       	sbi	0x15, 2	; 21
+
+	//상태체크 LED
+	sbi(PORTC, 5);
+  a6:	ad 9a       	sbi	0x15, 5	; 21
+
+	stdout = &device;
+  a8:	80 e6       	ldi	r24, 0x60	; 96
+  aa:	90 e0       	ldi	r25, 0x00	; 0
+  ac:	90 93 75 00 	sts	0x0075, r25
+  b0:	80 93 74 00 	sts	0x0074, r24
+
+	sei();
+  b4:	78 94       	sei
+
+}
+  b6:	08 95       	ret
+
+000000b8 <__vector_11>:
+
+ISR(SIG_UART_RECV)
+{
+  b8:	1f 92       	push	r1
+  ba:	0f 92       	push	r0
+  bc:	0f b6       	in	r0, 0x3f	; 63
+  be:	0f 92       	push	r0
+  c0:	11 24       	eor	r1, r1
+  c2:	8f 93       	push	r24
+  c4:	9f 93       	push	r25
+  c6:	af 93       	push	r26
+  c8:	bf 93       	push	r27
+	cli();
+  ca:	f8 94       	cli
+
+	int test, command;
+
+	while((UCSRA &(1<<RXC)) == 0);
+  cc:	5f 9b       	sbis	0x0b, 7	; 11
+  ce:	fe cf       	rjmp	.-4      	; 0xcc <__vector_11+0x14>
+	
+	RX_BUF[0] = UDR;
+  d0:	8c b1       	in	r24, 0x0c	; 12
+  d2:	80 93 70 00 	sts	0x0070, r24
+
+	if(RX_BUF[0] == '1')
+  d6:	80 91 70 00 	lds	r24, 0x0070
+  da:	81 33       	cpi	r24, 0x31	; 49
+  dc:	99 f4       	brne	.+38     	; 0x104 <__vector_11+0x4c>
+	{
+		if(Test == 1)
+  de:	80 91 6f 00 	lds	r24, 0x006F
+  e2:	81 30       	cpi	r24, 0x01	; 1
+  e4:	11 f4       	brne	.+4      	; 0xea <__vector_11+0x32>
+		{
+			cbi(PORTC,2); //Deadbolt ON
+  e6:	aa 98       	cbi	0x15, 2	; 21
+  e8:	2d c0       	rjmp	.+90     	; 0x144 <__vector_11+0x8c>
+		}
+		else
+		{
+			cbi(PORTC,2); //Deadbolt ON
+  ea:	aa 98       	cbi	0x15, 2	; 21
+			Relay = 0;
+  ec:	10 92 71 00 	sts	0x0071, r1
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  f0:	8f ef       	ldi	r24, 0xFF	; 255
+  f2:	91 e1       	ldi	r25, 0x11	; 17
+  f4:	aa e7       	ldi	r26, 0x7A	; 122
+  f6:	81 50       	subi	r24, 0x01	; 1
+  f8:	90 40       	sbci	r25, 0x00	; 0
+  fa:	a0 40       	sbci	r26, 0x00	; 0
+  fc:	e1 f7       	brne	.-8      	; 0xf6 <__vector_11+0x3e>
+  fe:	00 c0       	rjmp	.+0      	; 0x100 <__vector_11+0x48>
+ 100:	00 00       	nop
+ 102:	20 c0       	rjmp	.+64     	; 0x144 <__vector_11+0x8c>
+			_delay_ms(5000);
+		}
+	}
+	else if(RX_BUF[0] == '4')
+ 104:	80 91 70 00 	lds	r24, 0x0070
+ 108:	84 33       	cpi	r24, 0x34	; 52
+ 10a:	11 f4       	brne	.+4      	; 0x110 <__vector_11+0x58>
+	{
+		sbi(PORTC,2); //Deadbolt OFF
+ 10c:	aa 9a       	sbi	0x15, 2	; 21
+ 10e:	1a c0       	rjmp	.+52     	; 0x144 <__vector_11+0x8c>
+	}
+	else if(RX_BUF[0] == '6')
+ 110:	80 91 70 00 	lds	r24, 0x0070
+ 114:	86 33       	cpi	r24, 0x36	; 54
+ 116:	11 f4       	brne	.+4      	; 0x11c <__vector_11+0x64>
+	{
+		sbi(PORTB,0); //Board OFF
+ 118:	c0 9a       	sbi	0x18, 0	; 24
+ 11a:	14 c0       	rjmp	.+40     	; 0x144 <__vector_11+0x8c>
+	}
+	else if(RX_BUF[0] == '7') 
+ 11c:	80 91 70 00 	lds	r24, 0x0070
+ 120:	87 33       	cpi	r24, 0x37	; 55
+ 122:	11 f4       	brne	.+4      	; 0x128 <__vector_11+0x70>
+	{
+		cbi(PORTB,0); //Board ON
+ 124:	c0 98       	cbi	0x18, 0	; 24
+ 126:	0e c0       	rjmp	.+28     	; 0x144 <__vector_11+0x8c>
+	}
+	else if(RX_BUF[0] == 'T') 
+ 128:	80 91 70 00 	lds	r24, 0x0070
+ 12c:	84 35       	cpi	r24, 0x54	; 84
+ 12e:	21 f4       	brne	.+8      	; 0x138 <__vector_11+0x80>
+	{
+		Test = 1;  // set test mode
+ 130:	81 e0       	ldi	r24, 0x01	; 1
+ 132:	80 93 6f 00 	sts	0x006F, r24
+ 136:	06 c0       	rjmp	.+12     	; 0x144 <__vector_11+0x8c>
+	}
+	else if(RX_BUF[0] == 'F') 
+ 138:	80 91 70 00 	lds	r24, 0x0070
+ 13c:	86 34       	cpi	r24, 0x46	; 70
+ 13e:	11 f4       	brne	.+4      	; 0x144 <__vector_11+0x8c>
+	{
+		Test = 0;  // end test mode
+ 140:	10 92 6f 00 	sts	0x006F, r1
+	}
+
+	sei();
+ 144:	78 94       	sei
+}
+ 146:	bf 91       	pop	r27
+ 148:	af 91       	pop	r26
+ 14a:	9f 91       	pop	r25
+ 14c:	8f 91       	pop	r24
+ 14e:	0f 90       	pop	r0
+ 150:	0f be       	out	0x3f, r0	; 63
+ 152:	0f 90       	pop	r0
+ 154:	1f 90       	pop	r1
+ 156:	18 95       	reti
+
+00000158 <tillend>:
+
+void tillend(int x)
+{
+	int a = 0;
+ 158:	20 e0       	ldi	r18, 0x00	; 0
+ 15a:	30 e0       	ldi	r19, 0x00	; 0
+	do{
+		cbi(PORTC,2);
+ 15c:	aa 98       	cbi	0x15, 2	; 21
+ 15e:	4f ef       	ldi	r20, 0xFF	; 255
+ 160:	5e e9       	ldi	r21, 0x9E	; 158
+ 162:	64 e2       	ldi	r22, 0x24	; 36
+ 164:	41 50       	subi	r20, 0x01	; 1
+ 166:	50 40       	sbci	r21, 0x00	; 0
+ 168:	60 40       	sbci	r22, 0x00	; 0
+ 16a:	e1 f7       	brne	.-8      	; 0x164 <tillend+0xc>
+ 16c:	00 c0       	rjmp	.+0      	; 0x16e <tillend+0x16>
+ 16e:	00 00       	nop
+		_delay_ms(1500);
+		sbi(PORTC,2);
+ 170:	aa 9a       	sbi	0x15, 2	; 21
+ 172:	4f ef       	ldi	r20, 0xFF	; 255
+ 174:	5e e9       	ldi	r21, 0x9E	; 158
+ 176:	64 e2       	ldi	r22, 0x24	; 36
+ 178:	41 50       	subi	r20, 0x01	; 1
+ 17a:	50 40       	sbci	r21, 0x00	; 0
+ 17c:	60 40       	sbci	r22, 0x00	; 0
+ 17e:	e1 f7       	brne	.-8      	; 0x178 <tillend+0x20>
+ 180:	00 c0       	rjmp	.+0      	; 0x182 <tillend+0x2a>
+ 182:	00 00       	nop
+		_delay_ms(1500);
+		a++;
+ 184:	2f 5f       	subi	r18, 0xFF	; 255
+ 186:	3f 4f       	sbci	r19, 0xFF	; 255
+	}while(a <= x);
+ 188:	82 17       	cp	r24, r18
+ 18a:	93 07       	cpc	r25, r19
+ 18c:	3c f7       	brge	.-50     	; 0x15c <tillend+0x4>
+	//printf("2");
+	//Relay = 2;
+}
+ 18e:	08 95       	ret
+
+00000190 <loop>:
+
+void loop(){
+
+	if(Test == 0)
+ 190:	80 91 6f 00 	lds	r24, 0x006F
+ 194:	88 23       	and	r24, r24
+ 196:	b9 f5       	brne	.+110    	; 0x206 <loop+0x76>
+	{
+		if(Relay == 0) //자석 가까운데 문 열려있음
+ 198:	80 91 71 00 	lds	r24, 0x0071
+ 19c:	88 23       	and	r24, r24
+ 19e:	51 f4       	brne	.+20     	; 0x1b4 <loop+0x24>
+		{
+			if(!(PINC&0x01))
+ 1a0:	98 99       	sbic	0x13, 0	; 19
+ 1a2:	14 c0       	rjmp	.+40     	; 0x1cc <loop+0x3c>
+			{
+				printf("0");
+ 1a4:	80 e3       	ldi	r24, 0x30	; 48
+ 1a6:	90 e0       	ldi	r25, 0x00	; 0
+ 1a8:	54 d0       	rcall	.+168    	; 0x252 <putchar>
+			
+				sbi(PORTC,2);
+ 1aa:	aa 9a       	sbi	0x15, 2	; 21
+				Relay = 1;
+ 1ac:	81 e0       	ldi	r24, 0x01	; 1
+ 1ae:	80 93 71 00 	sts	0x0071, r24
+ 1b2:	0c c0       	rjmp	.+24     	; 0x1cc <loop+0x3c>
+			}
+		}
+		else if(Relay == 1) //문닫혀있는데 자석 멀음
+ 1b4:	80 91 71 00 	lds	r24, 0x0071
+ 1b8:	81 30       	cpi	r24, 0x01	; 1
+ 1ba:	41 f4       	brne	.+16     	; 0x1cc <loop+0x3c>
+		{
+			
+			if(PINC&0x01)
+ 1bc:	98 9b       	sbis	0x13, 0	; 19
+ 1be:	06 c0       	rjmp	.+12     	; 0x1cc <loop+0x3c>
+			{
+				tillend(3);
+ 1c0:	83 e0       	ldi	r24, 0x03	; 3
+ 1c2:	90 e0       	ldi	r25, 0x00	; 0
+ 1c4:	c9 df       	rcall	.-110    	; 0x158 <tillend>
+				p=2;
+ 1c6:	82 e0       	ldi	r24, 0x02	; 2
+ 1c8:	80 93 6e 00 	sts	0x006E, r24
+			}
+		}
+
+		if((p==2) && (PINC&0x01) && (Relay==1))
+ 1cc:	80 91 6e 00 	lds	r24, 0x006E
+ 1d0:	82 30       	cpi	r24, 0x02	; 2
+ 1d2:	49 f4       	brne	.+18     	; 0x1e6 <loop+0x56>
+ 1d4:	98 9b       	sbis	0x13, 0	; 19
+ 1d6:	07 c0       	rjmp	.+14     	; 0x1e6 <loop+0x56>
+ 1d8:	80 91 71 00 	lds	r24, 0x0071
+ 1dc:	81 30       	cpi	r24, 0x01	; 1
+ 1de:	19 f4       	brne	.+6      	; 0x1e6 <loop+0x56>
+		{
+			printf("2");
+ 1e0:	82 e3       	ldi	r24, 0x32	; 50
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+ 1e4:	36 d0       	rcall	.+108    	; 0x252 <putchar>
+		}
+		if((p==2) && (!(PINC&0x01)) && (Relay==1))
+ 1e6:	80 91 6e 00 	lds	r24, 0x006E
+ 1ea:	82 30       	cpi	r24, 0x02	; 2
+ 1ec:	d1 f4       	brne	.+52     	; 0x222 <loop+0x92>
+ 1ee:	98 99       	sbic	0x13, 0	; 19
+ 1f0:	18 c0       	rjmp	.+48     	; 0x222 <loop+0x92>
+ 1f2:	80 91 71 00 	lds	r24, 0x0071
+ 1f6:	81 30       	cpi	r24, 0x01	; 1
+ 1f8:	a1 f4       	brne	.+40     	; 0x222 <loop+0x92>
+		{
+			printf("r");
+ 1fa:	82 e7       	ldi	r24, 0x72	; 114
+ 1fc:	90 e0       	ldi	r25, 0x00	; 0
+ 1fe:	29 d0       	rcall	.+82     	; 0x252 <putchar>
+			p=0;
+ 200:	10 92 6e 00 	sts	0x006E, r1
+ 204:	08 95       	ret
+		}
+	}
+	else if(Test == 1)
+ 206:	80 91 6f 00 	lds	r24, 0x006F
+ 20a:	81 30       	cpi	r24, 0x01	; 1
+ 20c:	51 f4       	brne	.+20     	; 0x222 <loop+0x92>
+	{
+		if(!(PINC&0x01))
+ 20e:	98 99       	sbic	0x13, 0	; 19
+ 210:	03 c0       	rjmp	.+6      	; 0x218 <loop+0x88>
+		{
+			printf("c");
+ 212:	83 e6       	ldi	r24, 0x63	; 99
+ 214:	90 e0       	ldi	r25, 0x00	; 0
+ 216:	1d d0       	rcall	.+58     	; 0x252 <putchar>
+		}
+
+		if(PINC&0x01)
+ 218:	98 9b       	sbis	0x13, 0	; 19
+ 21a:	03 c0       	rjmp	.+6      	; 0x222 <loop+0x92>
+		{
+			printf("o");
+ 21c:	8f e6       	ldi	r24, 0x6F	; 111
+ 21e:	90 e0       	ldi	r25, 0x00	; 0
+ 220:	18 d0       	rcall	.+48     	; 0x252 <putchar>
+ 222:	08 95       	ret
+
+00000224 <main>:
+}
+
+int main(void)
+{
+	//프로그램 업데이트되면 LED ON, OFF
+	sbi(PORTC, 4);
+ 224:	ac 9a       	sbi	0x15, 4	; 21
+ 226:	8f ef       	ldi	r24, 0xFF	; 255
+ 228:	92 e5       	ldi	r25, 0x52	; 82
+ 22a:	a7 e0       	ldi	r26, 0x07	; 7
+ 22c:	81 50       	subi	r24, 0x01	; 1
+ 22e:	90 40       	sbci	r25, 0x00	; 0
+ 230:	a0 40       	sbci	r26, 0x00	; 0
+ 232:	e1 f7       	brne	.-8      	; 0x22c <main+0x8>
+ 234:	00 c0       	rjmp	.+0      	; 0x236 <main+0x12>
+ 236:	00 00       	nop
+	_delay_ms(300);
+	cbi(PORTC, 4);
+ 238:	ac 98       	cbi	0x15, 4	; 21
+
+    setup();
+ 23a:	21 df       	rcall	.-446    	; 0x7e <setup>
+	
+    while (1) 
+    {
+		loop();
+ 23c:	a9 df       	rcall	.-174    	; 0x190 <loop>
+ 23e:	8f ef       	ldi	r24, 0xFF	; 255
+ 240:	99 e6       	ldi	r25, 0x69	; 105
+ 242:	a8 e1       	ldi	r26, 0x18	; 24
+ 244:	81 50       	subi	r24, 0x01	; 1
+ 246:	90 40       	sbci	r25, 0x00	; 0
+ 248:	a0 40       	sbci	r26, 0x00	; 0
+ 24a:	e1 f7       	brne	.-8      	; 0x244 <main+0x20>
+ 24c:	00 c0       	rjmp	.+0      	; 0x24e <main+0x2a>
+ 24e:	00 00       	nop
+ 250:	f5 cf       	rjmp	.-22     	; 0x23c <main+0x18>
+
+00000252 <putchar>:
+ 252:	60 91 74 00 	lds	r22, 0x0074
+ 256:	70 91 75 00 	lds	r23, 0x0075
+ 25a:	01 d0       	rcall	.+2      	; 0x25e <fputc>
+ 25c:	08 95       	ret
+
+0000025e <fputc>:
+ 25e:	0f 93       	push	r16
+ 260:	1f 93       	push	r17
+ 262:	cf 93       	push	r28
+ 264:	df 93       	push	r29
+ 266:	8c 01       	movw	r16, r24
+ 268:	eb 01       	movw	r28, r22
+ 26a:	8b 81       	ldd	r24, Y+3	; 0x03
+ 26c:	81 ff       	sbrs	r24, 1
+ 26e:	1b c0       	rjmp	.+54     	; 0x2a6 <fputc+0x48>
+ 270:	82 ff       	sbrs	r24, 2
+ 272:	0d c0       	rjmp	.+26     	; 0x28e <fputc+0x30>
+ 274:	2e 81       	ldd	r18, Y+6	; 0x06
+ 276:	3f 81       	ldd	r19, Y+7	; 0x07
+ 278:	8c 81       	ldd	r24, Y+4	; 0x04
+ 27a:	9d 81       	ldd	r25, Y+5	; 0x05
+ 27c:	28 17       	cp	r18, r24
+ 27e:	39 07       	cpc	r19, r25
+ 280:	64 f4       	brge	.+24     	; 0x29a <fputc+0x3c>
+ 282:	e8 81       	ld	r30, Y
+ 284:	f9 81       	ldd	r31, Y+1	; 0x01
+ 286:	01 93       	st	Z+, r16
+ 288:	f9 83       	std	Y+1, r31	; 0x01
+ 28a:	e8 83       	st	Y, r30
+ 28c:	06 c0       	rjmp	.+12     	; 0x29a <fputc+0x3c>
+ 28e:	e8 85       	ldd	r30, Y+8	; 0x08
+ 290:	f9 85       	ldd	r31, Y+9	; 0x09
+ 292:	80 2f       	mov	r24, r16
+ 294:	09 95       	icall
+ 296:	00 97       	sbiw	r24, 0x00	; 0
+ 298:	31 f4       	brne	.+12     	; 0x2a6 <fputc+0x48>
+ 29a:	8e 81       	ldd	r24, Y+6	; 0x06
+ 29c:	9f 81       	ldd	r25, Y+7	; 0x07
+ 29e:	01 96       	adiw	r24, 0x01	; 1
+ 2a0:	9f 83       	std	Y+7, r25	; 0x07
+ 2a2:	8e 83       	std	Y+6, r24	; 0x06
+ 2a4:	02 c0       	rjmp	.+4      	; 0x2aa <fputc+0x4c>
+ 2a6:	0f ef       	ldi	r16, 0xFF	; 255
+ 2a8:	1f ef       	ldi	r17, 0xFF	; 255
+ 2aa:	c8 01       	movw	r24, r16
+ 2ac:	df 91       	pop	r29
+ 2ae:	cf 91       	pop	r28
+ 2b0:	1f 91       	pop	r17
+ 2b2:	0f 91       	pop	r16
+ 2b4:	08 95       	ret
+
+000002b6 <_exit>:
+ 2b6:	f8 94       	cli
+
+000002b8 <__stop_program>:
+ 2b8:	ff cf       	rjmp	.-2      	; 0x2b8 <__stop_program>

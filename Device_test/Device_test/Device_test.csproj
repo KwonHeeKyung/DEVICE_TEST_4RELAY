@@ -55,6 +55,12 @@
     <Compile Include="Active.Designer.cs">
       <DependentUpon>Active.cs</DependentUpon>
     </Compile>
+    <Compile Include="Choice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Choice.Designer.cs">
+      <DependentUpon>Choice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Door.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
@@ -62,14 +68,26 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="OneDoorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OneDoorForm.Designer.cs">
+      <DependentUpon>OneDoorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scanner.cs" />
     <EmbeddedResource Include="Active.resx">
       <DependentUpon>Active.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Choice.resx">
+      <DependentUpon>Choice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OneDoorForm.resx">
+      <DependentUpon>OneDoorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -21,3 +21,5 @@ C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Debug
 C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Debug\Device_test.csproj.CoreCompileInputs.cache
 C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Debug\Device_test.exe
 C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Debug\Device_test.pdb
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Debug\Device_test.Choice.resources
+C:\Users\kwon\Desktop\KIOSK\DEVICE_TEST_4RELAY\Device_test\Device_test\obj\Debug\Device_test.OneDoorForm.resources

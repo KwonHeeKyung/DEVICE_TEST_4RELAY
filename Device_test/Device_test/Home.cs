@@ -26,8 +26,8 @@ namespace Device_test
         {
             if (text.Equals(PASSWORD)) {
                 Console.WriteLine("OK");
-                Active.START = 1;
                 this.Close();
+                
             }
         }
 

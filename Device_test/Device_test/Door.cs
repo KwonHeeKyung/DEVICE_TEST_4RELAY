@@ -17,13 +17,16 @@ namespace Device_test
         private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
-        #endregion
+        #endregion        
 
         SerialPort ser = new SerialPort();
         StringBuilder _door = new StringBuilder();
 
+        public bool STATUS = false;
+
         public delegate void DataRecvHandlerFunc(byte[] data);
         public DataRecvHandlerFunc DataRecvHandler;
+        
 
         public Door()
         {
@@ -43,14 +46,16 @@ namespace Device_test
                 ser.DataReceived += Data_recv;
 
                 ser.Open();
+                STATUS = true;
                 return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
+                return false;
             }
 
-            return false;
         }
 
         public void close()
