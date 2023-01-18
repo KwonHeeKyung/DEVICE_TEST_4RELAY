@@ -49,20 +49,26 @@ namespace Device_test
                     door.close();
                     Console.WriteLine("Door Close");
                 }
-
-                if (sc.STATUS)
-                {
-                    sc.close();
-                    Console.WriteLine("Scanner Close");
-                }
-
-                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR");
             }
 
+            try
+            {
+                if (sc.STATUS)
+                {
+                    sc.close();
+                    Console.WriteLine("Scanner Close");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR");
+            }
+
+            Application.Exit();
         }
 
         private void ScannerStatus(byte[] data)

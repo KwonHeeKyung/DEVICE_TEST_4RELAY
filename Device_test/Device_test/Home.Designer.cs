@@ -41,6 +41,7 @@ namespace Device_test
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.btn_exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -187,11 +188,23 @@ namespace Device_test
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.btn_click);
             // 
-            // Form1
+            // btn_exit
+            // 
+            this.btn_exit.Font = new System.Drawing.Font("돋움", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_exit.Location = new System.Drawing.Point(19, 928);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(543, 45);
+            this.btn_exit.TabIndex = 12;
+            this.btn_exit.Text = "종료";
+            this.btn_exit.UseVisualStyleBackColor = true;
+            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
+            // 
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 985);
+            this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button12);
@@ -205,7 +218,7 @@ namespace Device_test
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -226,6 +239,7 @@ namespace Device_test
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btn_exit;
     }
 }
 

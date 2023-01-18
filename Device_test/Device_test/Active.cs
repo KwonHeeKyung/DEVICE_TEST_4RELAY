@@ -32,11 +32,6 @@ namespace Device_test
             sc = new Scanner();
             sc.DataRecvHandler = ScannerStatus;
             bool res = sc.open();
-            if (!res)
-            {
-                MessageBox.Show("스캐너 연결에 실패하여 프로그램을 종료합니다.");
-                Application.Exit();
-            }
 
             door = new Door();
             door.DataRecvHandler = DoorStatus;
@@ -63,20 +58,27 @@ namespace Device_test
                     door.close();
                     Console.WriteLine("Door Close");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR");
+            }
 
+            try
+            {
                 if (sc.STATUS)
                 {
                     sc.close();
                     Console.WriteLine("Scanner Close");
                 }
-                
-                this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR");
             }
-            
+
+            Application.Exit();
+
         }
 
         private void ScannerStatus(byte[] data)
